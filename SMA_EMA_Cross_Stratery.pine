@@ -1,0 +1,61 @@
+
+//@version=5
+indicator("Triple Moving Averages", overlay=true) 
+
+// Checkbox inputs
+a = input(true, title="Enable 2nd MA")
+b = input(true, title="Enable 3rd MA")  
+
+// Integer inputs
+len = input.int(4, title="Length")
+len2 = input.int(9, title="Length2")
+len3 = input.int(18, title="Length3")
+
+// Calculate MAs
+em1 = ta.ema(close, len)
+em2 = ta.ema(close, len2)
+em3 = ta.ema(close, len3)
+
+sm1 = ta.sma(close, len)  
+sm2 = ta.sma(close, len2)
+sm3 = ta.sma(close, len3)
+
+// Global variables for signals
+var float val1 = na
+var float val2 = na
+var float val3 = na
+
+// Logic
+if em1 > em2 and em2 > em3
+    val1 := 1.0  // above EMA Cross
+
+if sm1 > sm2 and sm2 > sm3
+    val2 := 1.0   // above SMA cross
+
+if em1 < em2 and em2 < em3
+    val1 := 2.0
+
+if sm1 < sm2 and sm2 < sm3
+    val2 := 2.0
+
+if val1 == 1.0 and val2 == 1.0
+    val3 := 1.0
+
+if val1 == 2.0 and val2 == 2.0
+    val3 := 2.0
+
+// Track changes in val3
+val3_changed = val3 != val3[1]
+
+// Plots
+plot(a ? em1 : na, title="EMA1", color=color.red)
+plot(a ? em2 : na, title="EMA2", color=#00FF00)
+plot(b ? em3 : na, title="EMA3", color=#0000FF)
+
+plot(a ? sm1 : na, title="SMA1", color=color.orange)
+plot(a ? sm2 : na, title="SMA2", color=#00FF00) 
+plot(b ? sm3 : na, title="SMA3", color=#0000FF)
+
+// Plot Buy and Sell signals
+plotshape(series=val3_changed and val3 == 1.0, title="Buy Signal", color=color.green, style=shape.labelup, text="Buy", location=location.belowbar)
+plotshape(series=val3_changed and val3 == 2.0, title="Sell Signal", color=color.red, style=shape.labelup, text="Sell", location=location.belowbar)
