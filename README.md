@@ -6,11 +6,17 @@ This project depends on charts provided by Tradingview platform which provides c
 Tradingview supports different time frames, but the main ones used by most traders are the 1, 5 and 15 min charts for day trading and the 1, 4 hours and the daily candle for swing trading. Tradingview also developed its own unique scripting 
 language -PineScript- that allows for the creation of indicators and strategies which is what will be used to complete this project. It also allows for back testing of strategies by allowing backtrackingof upto 10000 bar. 
 
-This strategy consists of the following main componets : 
+This strategy consists of the following main componets :
+
     1- Tracking price movment. 
+    
     2- Setting trading restrictions. 
-    3- Printing buy/sell/exit signals. 
+    
+    3- Printing buy/sell/exit signals.
+    
     4- Implenting a stop loss to cut down losses.  
+
+    5- Testing and resutls. 
 
 We need to define what STRATEGY means before proceeding any further. 
 Strategy: consits of multiple pieces that need to allign in order for a signal to be issued. 
@@ -23,7 +29,10 @@ Understanding the term strategy is crucial in working on this project. Using mul
 
  3- Printing buy/sell/exit signals: This step requires printing buy/sell and exit signals on the chart. This can also notify the system to issue these calls for automated trading bot to talk to the api to execute these orders in exchange when deployed. 
 
- 4- Implenting a stop loss to cut down losses: Stop loss should act as a mechanism to reduce losses if the trade goes the other direction before it is too late. This can be implemented in a percentage increaments such as 5, 10 or 20 percent loss. It can also be costumized depending on the user's loss tolerance. in addition, this can acheived by using Average True Range as a reference. This strategy will experiment with ranges where the loss is not significantly high and to handle fake outs at the same time where the price might move to the opposite direction for liquidity grab. One way of acheiving this is to use a stop loss that is 2 times the Average True Range value... 
+ 4- Implenting a stop loss to cut down losses: Stop loss should act as a mechanism to reduce losses if the trade goes the other direction before it is too late. This can be implemented in a percentage increaments such as 5, 10 or 20 percent loss. It can also be costumized depending on the user's loss tolerance. in addition, this can acheived by using Average True Range as a reference. This strategy will experiment with ranges where the loss is not significantly high and to handle fake outs at the same time where the price might move to the opposite direction for liquidity grab. One way of acheiving this is to use a stop loss that is 2 times the Average True Range value.
 
+ 5- Testing and resutls: in order for a strategy to be succesfull and before it is deployed,it has to acheive a good winning rate. The testing will consit of using $100 worth of paper trading to back test and tweak for any changes required to acheive a good resutls. 
+
+Will be updated later ... 
 
 
